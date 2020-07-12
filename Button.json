@@ -7,7 +7,9 @@
         "name": "node"
       },
       "required": true,
-      "muiL10nDescription": "The content of the button.",
+      "description": {
+        "muiL10n": "The content of the button."
+      },
       "tags": []
     },
     "classes": {
@@ -15,7 +17,9 @@
         "name": "object"
       },
       "required": true,
-      "muiL10nDescription": "Override or extend the styles applied to the component.\nSee [CSS API](#css) below for more details.",      
+      "description":  {
+        "muiL10n": "Override or extend the styles applied to the component.\nSee [CSS API](#css) below for more details."
+      },
       "tags": []
     },
     "color": {
@@ -228,8 +232,12 @@
     ],
     "name": "MuiButton",
     "descriptions": {
-      "muiL10nRoot": "Styles applied to the root element.",
-      "muiL10nLabel": "Styles applied to the span element that wraps the children.",      
+      "root": { 
+        "muiL10n": "Styles applied to the root element."
+      },
+      "label": {
+        "muiL10n": "Styles applied to the span element that wraps the children."
+      },     
       "text": "Styles applied to the root element if `variant=\"text\"`.",
       "textPrimary": "Styles applied to the root element if `variant=\"text\"` and `color=\"primary\"`.",
       "textSecondary": "Styles applied to the root element if `variant=\"text\"` and `color=\"secondary\"`.",

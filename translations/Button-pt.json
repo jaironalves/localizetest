@@ -1,4 +1,5 @@
 {
   "propsChildrenDescription": "O conteúdo do botão.",
+  "stylesDescriptionsRoot": "Estilos aplicados para o elemento raiz.",
   "stylesDescriptionsLabel": "Estilos aplicados para o elemento span que encapsula o elemento children."
 }

@@ -2,23 +2,17 @@ const _ = require("lodash");
 //mixin all the methods into Lodash object
 require("deepdash")(_);
 
-const fs = require('fs');
+const fs = require("fs");
 
 const button = require("./button.json");
-let buttonLocalized = require("./button.json");
-const translations = require('./translations/Button-pt.json');
+const buttonLocalized = require("./button.json");
+const translations = require("./translations/Button-pt.json");
 
 let objectsL10n = [];
 
 const convert = (aPath) =>
-  Array.from(aPath).map((value, index) => {
-    let lastItem = index === aPath.length - 1;
-    if (lastItem) {
-      return _.camelCase(value.replace("muiL10n", ""));
-    }
+  Array.from(aPath).slice(0, Array.from(aPath).length - 1)
 
-    return value;
-  });
 
 const localize = (key, fallBack) => {
   let localized = translations[key];
@@ -33,21 +27,25 @@ _.eachDeep(button, (value, key, _parentValue, context) => {
     let key = _.camelCase(apply.join(" "));
     objectsL10n.push({
       key,
-      omit,
       apply,
+      omit,      
       stringValue: value,
-      stringLocalized: localize(key, value)
-    });    
+      stringLocalized: localize(key, value),
+    });
   }
 });
 
-objectsL10n.forEach(objectL10n => {
-  _.set(buttonLocalized, objectL10n.apply, objectL10n.stringLocalized);
+objectsL10n.forEach((objectL10n) => {
   _.set(buttonLocalized, objectL10n.omit, undefined);
+  _.set(buttonLocalized, objectL10n.apply, objectL10n.stringLocalized);
 });
 
-fs.writeFile('Button.localized.json', JSON.stringify(buttonLocalized, undefined, true), (err) => {
-  if (err) return console.log(err);  
-});
+fs.writeFile(
+  "Button.localized.json",
+  JSON.stringify(buttonLocalized, null, '\t'),
+  (err) => {
+    if (err) return console.log(err);
+  }
+);
 
 console.log(objectsL10n);
